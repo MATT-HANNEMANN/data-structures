@@ -12,6 +12,13 @@ public class ListUtil
     */
     public static void reverse(LinkedList<String> strings)
     {
-        ...
+        LinkedList<String> TemporaryNames = new LinkedList();
+
+        int x = 3;
+        while (x >= 0)
+            {TemporaryNames.addLast(strings.get(x));     x--;}
+
+        strings.clear();
+        strings.addAll(TemporaryNames);
     }
 }
