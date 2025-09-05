@@ -36,9 +36,39 @@ public class SudokuSolver {
         }
 
         // create the list of sets for each row (this.rows)
-        // ...
+        this.rows = new ArrayList<>();
+        for(int i=0; i<9; i++) {
+            Set<Integer> thisrow = new HashSet<>();
+            for(int a=0; a<9; a++) {
+                thisrow.add(this.grid[i][a]);
+            }
+            this.rows.add(thisrow);   
+        }
+        // works
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // create the list of sets for each col (this.cols)
+        this.cols = new ArrayList<>();
+        for(int i=0; i<9; i++) {
+            Set<Integer> thiscol = new HashSet<>();
+            for(int a=0; a<9; a++) {
+                thiscol.add(this.grid[a][i]);
+            }
+            this.cols.add(thiscol);   
+        }
         // ...
 
         // create the list of sets for each square (this.squares)
@@ -47,6 +77,8 @@ public class SudokuSolver {
             3 4 5
             6 7 8
          */
+        this.squares = new ArrayList<>();
+        
         // ...
 
         // create a hash set for [1..9] (this.nums)
@@ -140,8 +172,33 @@ public class SudokuSolver {
         return str;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //************************************************MAIN***********************************************************/
+
+
     public static void main(String[] args) {
-        String fileName = "src/puzzle1.txt";
+        String fileName = "puzzle1.txt";
 
         SudokuSolver solver = new SudokuSolver(fileName);
         System.out.println(solver);
