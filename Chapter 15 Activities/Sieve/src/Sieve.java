@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * A program that implements the sieve of Eratosthenes.
 */
-5public class Sieve
+public class Sieve
 {
     public static void main(String[] args)
     {
@@ -19,7 +19,11 @@ import java.util.Scanner;
 
 
 
-        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        ArrayList<Integer> numbers = new ArrayList<Integer>(); //used for the multiples
+
+
+
+
 
         for (int i = 2; i <= n; i++)
             {numbers.add(i);}
@@ -61,16 +65,13 @@ import java.util.Scanner;
 
 
 
+
+        ArrayList<Integer> solution = new ArrayList<Integer>(); 
         
-        ArrayList<Integer> solution = new ArrayList<Integer>(numbers);
         for (int i = 0; i < solution.size(); i++)
-            { if (solution.get(i) % 3 == 0 || solution.get(i) % 2 == 0) {solution.remove(i);} }
+            { if (solution.get(i) % 2 == 0 || solution.get(i) % 3 == 0) {solution.remove(i); i--;} }
 
-        System.out.println("Solution: " + multiplesOf3);
-
-        // implement the solution in the sieve class
-
-        // test with 50, 100, 150
+        System.out.println("Solution: " + solution);
 
 
     }
