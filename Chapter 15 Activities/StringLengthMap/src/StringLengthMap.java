@@ -12,24 +12,33 @@ public class StringLengthMap
 {
     public static void main(String[] args) throws FileNotFoundException
     {
-        String filename = "src/test1.txt";
+        //String filename = "C:\\Users\\mjhannemann\\Desktop\\SD Stuff\\data-structures\\Chapter 15 Activities\\StringLengthMap\\src\\test1.txt";
+        String filename = "StringLengthMap\\src\\test1.txt";
+
+
+
+
 
         try (Scanner in = new Scanner(new File(filename)))
         {
 
             // Create your map here
+            Map<Integer, String> map = new HashMap<>(); //<length, word>
             
-
             while (in.hasNext())
             {
                 String word = clean(in.next());
                 Integer len = word.length();
 
+                map.put(len, word);
                 // Update the map here
                 // Modify Worked Example 15.1
                 
-
-
+                
+                
+                
+                
+                //System.out.println(map);
             }
 
             // Print the strings, in increasing order of their length
@@ -40,6 +49,18 @@ public class StringLengthMap
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+    
     public static String clean(String s)
     {
         String r = "";
@@ -47,9 +68,7 @@ public class StringLengthMap
         {
             char c = s.charAt(i);
             if (Character.isLetter(c))
-            {
-                r = r + c;
-            }
+                {r = r + c;}
         }
         return r.toLowerCase();
     }
