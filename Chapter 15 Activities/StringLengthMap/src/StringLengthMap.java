@@ -12,8 +12,7 @@ public class StringLengthMap
 {
     public static void main(String[] args) throws FileNotFoundException
     {
-        //String filename = "C:\\Users\\mjhannemann\\Desktop\\SD Stuff\\data-structures\\Chapter 15 Activities\\StringLengthMap\\src\\test1.txt";
-        String filename = "StringLengthMap\\src\\test1.txt";
+        String filename = "C:\\Users\\mjhannemann\\Desktop\\SD Stuff\\data-structures\\Chapter 15 Activities\\StringLengthMap\\src\\test1.txt";
 
 
 
@@ -31,18 +30,27 @@ public class StringLengthMap
                 Integer len = word.length();
 
                 map.put(len, word);
-                // Update the map here
-                // Modify Worked Example 15.1
-                
-                
-                
-                
-                
-                //System.out.println(map);
             }
 
-            // Print the strings, in increasing order of their length
-            // Use this format: 1: i, a, i
+
+
+
+
+
+            
+            Map<Integer, List<String>> grouped = new HashMap<>();
+            for (String word : map.values()) {
+                int len = word.length();
+                grouped.computeIfAbsent(len, k -> new ArrayList<>()).add(word);
+            }
+
+            // Print in order
+            List<Integer> lengths = new ArrayList<>(grouped.keySet());
+            Collections.sort(lengths);
+            for (int len : lengths) {
+                System.out.print(len + ": ");
+                System.out.println(String.join(", ", grouped.get(len)));
+            }
         } catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);
