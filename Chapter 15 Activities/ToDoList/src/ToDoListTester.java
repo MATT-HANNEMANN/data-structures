@@ -11,17 +11,31 @@ public class ToDoListTester
         System.out.println("\"add 6 Call parents\"");
         System.out.println("\"add 5 Have dinner with friends\"");
         System.out.println("\"add 9 Sleep well\"");
+
+
         list.addTask("add 1 Complete Programming Exercise 15.11");
         list.addTask("add 8 Read for tomorrow's class");
         list.addTask("add 3 Soccer practice");
         list.addTask("add 6 Call parents");
         list.addTask("add 5 Have dinner with friends");
         list.addTask("add 9 Sleep well");
+
         System.out.println();
+
+        for (int i = 0; i < 6; i++) {
+            list.nextTask();
+        }
+        System.out.println();
+
+
         System.out.println("Entering 'add bad command'");
         list.addTask("add bad command");
         System.out.println("Expected: The priority must be an integer between 1 and 9.");
+        
+        
         System.out.println();
+
+
         System.out.println("Pulling most urgent items out.");
         list.nextTask();
         System.out.println("Expected: Complete Programming Exercise 15.11");
