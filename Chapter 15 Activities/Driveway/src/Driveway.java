@@ -21,10 +21,8 @@ public class Driveway
     */
     public Driveway()
     {
-        // Complete the constructor
-        ...
-
-
+        driveway = new Stack<>();
+        street = new Stack<>();
     }
 
     /**
@@ -34,10 +32,7 @@ public class Driveway
     */
     public void add(int licensePlate)
     {
-        // Complete this method
-        ...
-
-
+        driveway.push(licensePlate);
     }
 
     /**
@@ -47,11 +42,31 @@ public class Driveway
     */
     public void remove(int licensePlate)
     {
-        // Complete this method
-        ...
+        // Find the index of the license plate in the driveway
+        int index = -1;
+        for (int i = driveway.size() - 1; i >= 0; i--) 
+        {
+            if (driveway.get(i) == licensePlate) 
+            {index = i;break;}
+        }
 
+        // If not found, do nothing
+        if (index == -1) return;
+        
+          // Move cars above the target to the street
+          while (driveway.size() - 1 > index) 
+          {
+              int car = driveway.remove(driveway.size() - 1);
+              street.push(car);
+          }
 
-    }
+          // Remove the target car
+          driveway.remove(driveway.size() - 1);
+
+          // Move cars back from street to driveway
+          while (!street.isEmpty()) 
+            {driveway.push(street.remove(street.size() - 1));}
+      }
 
     /**
       * Prints the driveway and street details to the screen.
@@ -59,12 +74,14 @@ public class Driveway
     public void print()
     {
         System.out.println("In Driveway, starting at first in (one license plate per line):");
-        // Print the cars in the driveway here
-        ...
+        for (int i = driveway.size() - 1; i >= 0; i--) 
+          {System.out.println(driveway.get(i));}
 
+          
         System.out.println("In Street, starting at first in (one license plate per line):");
-        // Print the cars in the street here
-        ...
 
+
+        for (int i = street.size() - 1; i >= 0; i--) 
+          {System.out.println(street.get(i));}
     }
 }
