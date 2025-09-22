@@ -76,12 +76,20 @@ public class ToDoList
         int firstSpace = optionStr.indexOf(' ');
         int secondSpace = optionStr.indexOf(' ', firstSpace + 1);
         if (firstSpace == -1 || secondSpace == -1) {
-            System.out.println("Expected: The priority must be an integer between 1 and 9.");
+            System.out.println("The priority must be an integer between 1 and 9.");
             return;
         }
-        int priority = Integer.parseInt(optionStr.substring(firstSpace + 1, secondSpace));
-        String description = optionStr.substring(secondSpace + 1);
-        theList.add(new Task(priority, description));
+        try {
+            int priority = Integer.parseInt(optionStr.substring(firstSpace + 1, secondSpace));
+            String description = optionStr.substring(secondSpace + 1);
+            if (priority < 1 || priority > 9) {
+                System.out.println("The priority must be an integer between 1 and 9.");
+                return;
+            }
+            theList.add(new Task(priority, description));
+        } catch (NumberFormatException e) {
+            System.out.println("The priority must be an integer between 1 and 9.");
+        }
     }
 
 
