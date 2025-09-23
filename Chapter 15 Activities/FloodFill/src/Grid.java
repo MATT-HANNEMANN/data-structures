@@ -1,40 +1,41 @@
+    // Simple class to hold a pair of integers (row, column)
+    private static class Pair {
+        int row, col;
+        Pair(int row, int col) {
+            this.row = row;
+            this.col = col;
+        }
+    }
 public class Grid
 {
     private static final int SIZE = 10;
     int[][] pixels = new int[SIZE][SIZE];
     
-    private int[][] grid = new int[10][10];
 
    
 
     /**
      * Flood fill, starting with the given row and column.
     */
+
     public void floodfill(int row, int column)
     {
-        // Stack for rows and columns
         java.util.Stack<Integer> rowStack = new java.util.Stack<>();
         java.util.Stack<Integer> colStack = new java.util.Stack<>();
-
-        // Counter to fill the grid in order
         int count = 1;
 
-        // Push the starting position
-        rowStack.push(row);
-        colStack.push(column);
+        Pair start = new Pair(row, column);
+        rowStack.push(start.row);
+        colStack.push(start.col);
 
-        // Repeat until stack is empty
+        
         while (!rowStack.isEmpty()) {
             int r = rowStack.pop();
             int c = colStack.pop();
-
-            // Check bounds and if not filled
             if (r >= 0 && r < SIZE && c >= 0 && c < SIZE && pixels[r][c] == 0) {
-                // Fill the cell with the current count
                 pixels[r][c] = count;
                 count++;
 
-                // Push unfilled neighbors (N, E, S, W)
                 rowStack.push(r - 1); colStack.push(c);     // North
                 rowStack.push(r);     colStack.push(c + 1); // East
                 rowStack.push(r + 1); colStack.push(c);     // South
