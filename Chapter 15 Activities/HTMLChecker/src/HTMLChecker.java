@@ -18,17 +18,32 @@ public class HTMLChecker
     public static void main(String[] args)
     {
         String filename = "src/TagSample1.html";
-
-        try (Scanner in = new Scanner(new File(filename)))
-        {
-            // Your code goes here
-            . . .
-
-
-        } catch (FileNotFoundException e)
-        {
+        try (Scanner in = new Scanner(new File(filename))) {
+            Stack<String> stack = new Stack<>();
+            boolean valid = true;
+            while (in.hasNext()) {
+                String tag = in.next();
+                if (!tag.startsWith("</")) {
+                    stack.push(tag);
+                } else {
+                    if (stack.size() == 0) {
+                        valid = false;
+                        break;
+                    }
+                    String open = stack.pop();
+                    if (!tag.equals("</" + open.substring(1))) {
+                        valid = false;
+                        break;
+                    }
+                }
+            }
+            if (valid && stack.size() == 0) {
+                System.out.println("Properly nested.");
+            } else {
+                System.out.println("Not properly nested.");
+            }
+        } catch (FileNotFoundException e) {
             System.out.println("Cannot open: " + filename);
         }
-
     }
 }
