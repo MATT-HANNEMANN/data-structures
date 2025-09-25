@@ -1,31 +1,45 @@
+    // Simple class to hold a pair of integers (row, column)
+    private static class Pair {
+        int row, col;
+        Pair(int row, int col) {
+            this.row = row;
+            this.col = col;
+        }
+    }
 public class Grid
 {
     private static final int SIZE = 10;
     int[][] pixels = new int[SIZE][SIZE];
     
-    private int[][] grid = new int[10][10];
+
+   
 
     /**
      * Flood fill, starting with the given row and column.
     */
+
     public void floodfill(int row, int column)
     {
-        public void floodFill(int startRow, int startCol) {
-        Stack<Pair> stack = new Stack<>();
-        int fillValue = 1;
-        stack.push(new Pair(startRow, startCol));
-        while (!stack.isEmpty()) 
-            {
-                Pair p = stack.pop();
-                int r = p.row, c = p.col;
-                if (r >= 0 && r < 10 && c >= 0 && c < 10 && grid[r][c] == 0) 
-                {
-                    grid[r][c] = fillValue++;
-                    stack.push(new Pair(r-1, c)); // north
-                    stack.push(new Pair(r+1, c)); // south
-                    stack.push(new Pair(r, c-1)); // west
-                    stack.push(new Pair(r, c+1)); // east
-                }
+        java.util.Stack<Integer> rowStack = new java.util.Stack<>();
+        java.util.Stack<Integer> colStack = new java.util.Stack<>();
+        int count = 1;
+
+        Pair start = new Pair(row, column);
+        rowStack.push(start.row);
+        colStack.push(start.col);
+
+        
+        while (!rowStack.isEmpty()) {
+            int r = rowStack.pop();
+            int c = colStack.pop();
+            if (r >= 0 && r < SIZE && c >= 0 && c < SIZE && pixels[r][c] == 0) {
+                pixels[r][c] = count;
+                count++;
+
+                rowStack.push(r - 1); colStack.push(c);     // North
+                rowStack.push(r);     colStack.push(c + 1); // East
+                rowStack.push(r + 1); colStack.push(c);     // South
+                rowStack.push(r);     colStack.push(c - 1); // West
             }
         }
     }
@@ -42,4 +56,5 @@ public class Grid
         }
         return r;
     }
+   
 }
