@@ -17,19 +17,29 @@ public class LinkedList
 
     
     //Computes the size of the linked list.       @return the number of elements in the list
-    public int size()
+    //public int size() // REGULAR
+    //{
+    //    int count = 0;
+    //    Node current = first;
+    //
+    //    while (current != null)
+    //    {
+    //        count++;
+    //        current = current.next;
+    //    }
+    //    return count;
+    //}
+
+    public int size() // RECURSIONS
+        {return sizeRecursive(first);}
+
+    private int sizeRecursive(Node node) 
     {
-        int count = 0;
-        Node current = first;
-
-        while (current != null)
-        {
-            count++;
-            current = current.next;
-        }
-        return count;
+    if (node == null) 
+        {return 0;} 
+    else 
+        {return 1 + sizeRecursive(node.next);}
     }
-
     
         
     // @return the first element in the linked list
