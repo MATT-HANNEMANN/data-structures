@@ -10,27 +10,29 @@ public class LinkedList
 {
     private Node first;
 
-    /**
-        Constructs an empty linked list.
-    */
+    
+    //Constructs an empty linked list.
     public LinkedList()
-    {
-        first = null;
-    }
+        {first = null;}
 
-    /**
-        Computes the size of the linked list.
-        @return the number of elements in the list
-    */
+    
+    //Computes the size of the linked list.       @return the number of elements in the list
     public int size()
     {
-        . . .
+        int count = 0;
+        Node current = first;
+
+        while (current != null)
+        {
+            count++;
+            current = current.next;
+        }
+        return count;
     }
 
-    /**
-        Returns the first element in the linked list.
-        @return the first element in the linked list
-    */
+    
+        
+    // @return the first element in the linked list
     public Object getFirst()
     {
         if (first == null)
@@ -38,10 +40,8 @@ public class LinkedList
         return first.data;
     }
 
-    /**
-        Removes the first element in the linked list.
-        @return the removed element
-    */
+
+    //Removes the first element in the linked list.       @return the removed element
     public Object removeFirst()
     {
         if (first == null)
@@ -51,10 +51,8 @@ public class LinkedList
         return element;
     }
 
-    /**
-        Adds an element to the front of the linked list.
-        @param element the element to add
-    */
+    
+    // Adds an element to the front of the linked list.        @param element the element to add
     public void addFirst(Object element)
     {
         Node newNode = new Node();
@@ -63,14 +61,10 @@ public class LinkedList
         first = newNode;
     }
 
-    /**
-        Returns an iterator for iterating through this list.
-        @return an iterator for iterating through this list
-    */
+    
+    // Returns an iterator for iterating through this list.        @return an iterator for iterating through this list
     public ListIterator listIterator()
-    {
-        return new LinkedListIterator();
-    }
+        {return new LinkedListIterator();}
 
     private class Node
     {
@@ -83,20 +77,16 @@ public class LinkedList
         private Node position;
         private Node previous;
 
-        /**
-            Constructs an iterator that points to the front
-            of the linked list.
-        */
+        
+        // Constructs an iterator that points to the front of the linked list.
         public LinkedListIterator()
         {
             position = null;
             previous = null;
         }
 
-        /**
-            Moves the iterator past the next element.
-            @return the traversed element
-        */
+        
+        // Moves the iterator past the next element.       @return the traversed element
         public Object next()
         {
             if (!hasNext())
@@ -112,10 +102,8 @@ public class LinkedList
         }
 
         /**
-            Tests if there is an element after the iterator
-            position.
-            @return true if there is an element after the iterator
-            position
+            Tests if there is an element after the iterator position.
+            @return true if there is an element after the iterator position
         */
         public boolean hasNext()
         {
@@ -158,13 +146,9 @@ public class LinkedList
                 throw new IllegalStateException();
 
             if (position == first)
-            {
-                removeFirst();
-            }
+                {removeFirst();}
             else
-            {
-                previous.next = position.next;
-            }
+                {previous.next = position.next;}
             position = previous;
         }
 
