@@ -13,37 +13,45 @@ import java.util.Stack;
  * For simplicity, assume that the tags are separated by
  * spaces, and that there is no text inside the tags.
 */
+
+// Im Lowkey gonna cry
+
 public class HTMLChecker
 {
     public static void main(String[] args)
     {
         String filename = "src/TagSample1.html";
+
         try (Scanner in = new Scanner(new File(filename))) {
             Stack<String> stack = new Stack<>();
+            
             boolean valid = true;
-            while (in.hasNext()) {
+
+
+            while (in.hasNext()) 
+            {
                 String tag = in.next();
-                if (!tag.startsWith("</")) {
-                    stack.push(tag);
-                } else {
-                    if (stack.size() == 0) {
-                        valid = false;
-                        break;
-                    }
+                if (!tag.startsWith("</")) 
+                    {stack.push(tag);} 
+
+                else 
+                {
+                    if (stack.size() == 0) 
+                        {valid = false;  break;}
+
                     String open = stack.pop();
-                    if (!tag.equals("</" + open.substring(1))) {
-                        valid = false;
-                        break;
-                    }
+                    if (!tag.equals("</" + open.substring(1))) 
+                        {valid = false;  break;}
                 }
             }
-            if (valid && stack.size() == 0) {
-                System.out.println("Properly nested.");
-            } else {
-                System.out.println("Not properly nested.");
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Cannot open: " + filename);
-        }
+            if (valid && stack.size() == 0) 
+                {System.out.println("Properly nested.");} 
+            else 
+                {System.out.println("Not properly nested.");}
+
+        } 
+        
+        catch (FileNotFoundException e) 
+            {System.out.println("Cannot open: " + filename);}
     }
 }
