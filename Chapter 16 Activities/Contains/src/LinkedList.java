@@ -39,17 +39,30 @@ public class LinkedList
         @param obj The object to be checked for.
         @return If the object exists in the list.
     */
-    public boolean contains(Object obj)
+    //public boolean contains(Object obj)
+    //{
+    //   Node current = first;
+    //    while (current != null)
+    //    {
+    //    if ((obj != null && obj.equals(current.data)))
+    //        {return true;}
+    //    current = current.next;
+    //    }
+    //    return false;
+    //}
+        public boolean contains(Object obj)
+        {return containsRecursive(first, obj);}
+   
+    private boolean containsRecursive(Node node, Object obj)
     {
-        Node current = first;
-        while (current != null)
-        {
-        if ((obj != null && obj.equals(current.data)))
-            {return true;}
-        current = current.next;
-        }
-        return false;
+        if (node == null) return false;
+        if ((obj == null && node.data == null))
+            return true;
+        return containsRecursive(node.next, obj);
     }
+
+
+
 
     /**
         Returns the first element in the linked list.
