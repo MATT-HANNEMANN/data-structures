@@ -66,20 +66,73 @@ public class BinarySearchTree
     {
         Node ToBeRemoved = this.root;
         boolean found = false;
+        Node parent = null;
 
         while (!found && ToBeRemoved != null) {
             int diff = obj.ToBeRemoved(current.data);
             if (diff ==0)
                 {return true;}
-            else if (diff < 0)
-                {ToBeRemoved = ToBeRemoved.left;}
-            else
-                {ToBeRemoved = ToBeRemoved.right;}
+            else if (diff < 0){
+                parent = ToBeRemoved;
+                ToBeRemoved = ToBeRemoved.left;}
+            else{
+                parent = ToBeRemoved;
+                ToBeRemoved = ToBeRemoved.right;}
         }
 
         if (!found){
             return;
         }
+
+        // Case 1 and Case 2 (At least one child is null)
+        if (ToBeRemoved.left = null || ToBeRemoved.right == null){
+            Node newChild;
+
+            if (ToBeRemoved.left == null){
+                newChild = ToBeRemoved.right;
+            }
+
+            else{
+                newChild = ToBeRemoved.left;
+            }
+
+            if (parent == null){
+                this.root = newChild;
+            }
+
+            else {
+                parent.right = newChild
+            }
+
+            return;
+        }
+
+
+        // Case 3: Remove a node with 2 children
+        Node leastParent - ToBeRemoved;
+        Node least = ToBeRemoved.right;
+        while (least.left != null){
+            leastParent = least;
+            least = least.left;
+        }
+
+        // Move the data to the node being removed
+        ToBeRemoved.data = least.data
+
+        // Unlink the least child
+        if (leastparent == ToBeRemoved){
+            leastParent.right = least.right;
+        }
+
+        else {
+            leastParent.left = least.right;
+        }
+
+
+
+
+
+
 
 
     }
@@ -90,7 +143,10 @@ public class BinarySearchTree
     */
     public void print()
     {   
-        
+        // print this.root
+        print(this.root);
+
+        System.out.println();
     }   
 
     /**
@@ -99,7 +155,13 @@ public class BinarySearchTree
     */
     private static void print(Node parent)
     {   
-        
+        if (parent == null){
+            return;
+        }
+
+        print (parent.left);
+        System.out.println(parent.data +" ");
+        print(parent.right);
     }
 
     /**
