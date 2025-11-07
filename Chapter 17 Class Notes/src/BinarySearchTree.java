@@ -41,7 +41,7 @@ public class BinarySearchTree
     */
     public boolean find(Comparable obj)
     {
-        Node current = this.root();
+        Node current = this.root;
         while (current != null) {           //.left != null || current.right != null){
             int diff = obj.compareTo(current.data);
             if (diff ==0)
@@ -69,9 +69,9 @@ public class BinarySearchTree
         Node parent = null;
 
         while (!found && ToBeRemoved != null) {
-            int diff = obj.ToBeRemoved(current.data);
-            if (diff ==0)
-                {return true;}
+            int diff = obj.compareTo(ToBeRemoved.data);
+            if (diff == 0)
+                {found = true; return;}
             else if (diff < 0){
                 parent = ToBeRemoved;
                 ToBeRemoved = ToBeRemoved.left;}
@@ -85,7 +85,7 @@ public class BinarySearchTree
         }
 
         // Case 1 and Case 2 (At least one child is null)
-        if (ToBeRemoved.left = null || ToBeRemoved.right == null){
+        if (ToBeRemoved.left == null || ToBeRemoved.right == null){
             Node newChild;
 
             if (ToBeRemoved.left == null){
@@ -101,7 +101,7 @@ public class BinarySearchTree
             }
 
             else {
-                parent.right = newChild
+                parent.right = newChild;
             }
 
             return;
@@ -109,7 +109,7 @@ public class BinarySearchTree
 
 
         // Case 3: Remove a node with 2 children
-        Node leastParent - ToBeRemoved;
+        Node leastParent = ToBeRemoved;
         Node least = ToBeRemoved.right;
         while (least.left != null){
             leastParent = least;
@@ -117,10 +117,10 @@ public class BinarySearchTree
         }
 
         // Move the data to the node being removed
-        ToBeRemoved.data = least.data
+        ToBeRemoved.data = least.data;
 
         // Unlink the least child
-        if (leastparent == ToBeRemoved){
+        if (leastParent == ToBeRemoved){
             leastParent.right = least.right;
         }
 
@@ -183,7 +183,7 @@ public class BinarySearchTree
         {   
             // if diff < 0, newNode is to the left of this node
             // if diff > 0, newNode is to the right of this node
-            int diff = newNode.data.compareTo(data);
+            int diff = ((Comparable)newNode.data).compareTo(this.data);
 
             if (diff < 0){
                 if (left == null) {

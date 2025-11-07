@@ -15,12 +15,16 @@ public class TreeDemo
       System.out.println("Size: " + t1.size());
 
 
-       // test depth-first traversal
-        System.out.print("Depth-First (Preorder): ");
-        t1.depthFirst(data -> System.out.print(data + " "));
+      System.out.print("Depth-First: ");
+      t1.depthFirst(new Tree.Visitor() {
+         public void visit(Object data) 
+            {System.out.print(data + " ");}
+        });
 
-        // test postorder traversal
-        System.out.print("\nPostorder: ");
-        t1.postorder(data -> System.out.print(data + " "));
+      System.out.print("\nPostorder: ");
+      t1.postorder(new Tree.Visitor() {
+         public void visit(Object data) 
+            {System.out.print(data + " ");}
+        });
    }
 }

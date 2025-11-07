@@ -30,7 +30,7 @@ public class Tree
             //    number += 1;
             //}
             for (Node Child: this.children)
-                {number += child.size();}
+                {number += Child.size();}
             return number;
         }
     }
@@ -51,7 +51,7 @@ public class Tree
     */
     public void addSubtree(Tree subtree)
     {
-        this.root.children.add(subTree.root);
+        this.root.children.add(subtree.root);
     }
 
     /**
@@ -80,51 +80,58 @@ public class Tree
      * @param v: the visitor to be invoked on each node
      */
 
-     private static void preorder(Node n, Visitor v){
-        if (n == null){
-            return;
-        }
-        
-        v.visit(n.data);
+    public void preorder(Visitor v) {
+    preorder(this.root, v); // calls the recursive helper
+    }
 
-        for (Node child: n.children){
-            tree.preorder(chile,v);
-        }
+     private void preorder(Node n, Visitor v) {
+    if (n == null) return;
+
+    v.visit(n.data);
+
+    for (Node child : n.children) {
+        preorder(child, v);
+    }
 }
 
-        private static 
+      
 
 
 
- public void depthFirst(Visitor v) {
+
+
+public void depthFirst(Visitor v) {
     depthFirst(this.root, v);
 }
 
 private static void depthFirst(Node n, Visitor v) {
     if (n == null) return;
 
-    v.visit(n.data); // visit the current node first
+    // Visit the current node first
+    v.visit(n.data);
+
+    // Recursively visit all children
     for (Node child : n.children) {
-        depthFirst(child, v); // then visit all children
+        depthFirst(child, v);
     }
 }
 
 
-    public void postorder(Visitor v) {
+
+
+public void postorder(Visitor v) {
     postorder(this.root, v);
 }
 
 private static void postorder(Node n, Visitor v) {
     if (n == null) return;
 
+    // Recursively visit all children first
     for (Node child : n.children) {
-        postorder(child, v); // visit all children first
+        postorder(child, v);
     }
-    v.visit(n.data); // visit the current node last
+
+    // Visit the current node last
+    v.visit(n.data);
 }
-
-
-
-
-
 }

@@ -30,7 +30,9 @@ public class TraversalDemo
 
         ShortNameCounter v = new ShortNameCounter();
 
+
+        
         t1.preorder(v);
-        System.out.println("Short names: " + v.counter);        */
+        System.out.println("Short names: " + v.counter);        
     }
 }
