@@ -1,4 +1,7 @@
 import java.util.List;
+
+import org.w3c.dom.Node;
+
 import java.util.ArrayList;
 
 /**
@@ -60,7 +63,6 @@ public class Tree
         return this.root.size();
     }
 
-//---------------------------------------------------------------------------------------NEW
     // Additional methods will be added in later sections.
 
     /*
@@ -89,5 +91,40 @@ public class Tree
             tree.preorder(chile,v);
         }
 }
+
+        private static 
+
+
+
+ public void depthFirst(Visitor v) {
+    depthFirst(this.root, v);
+}
+
+private static void depthFirst(Node n, Visitor v) {
+    if (n == null) return;
+
+    v.visit(n.data); // visit the current node first
+    for (Node child : n.children) {
+        depthFirst(child, v); // then visit all children
+    }
+}
+
+
+    public void postorder(Visitor v) {
+    postorder(this.root, v);
+}
+
+private static void postorder(Node n, Visitor v) {
+    if (n == null) return;
+
+    for (Node child : n.children) {
+        postorder(child, v); // visit all children first
+    }
+    v.visit(n.data); // visit the current node last
+}
+
+
+
+
 
 }
